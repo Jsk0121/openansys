@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OpenAnsys Agent</title>
+    <meta
+      name="description"
+      content="OpenAnsys Agent is a Rust CLI workflow for ANSYS APDL generation, repair, and LS-DYNA K-file export."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="OpenAnsys Agent home">
+        <span class="brand-mark">OA</span>
+        <span>OpenAnsys Agent</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#workflow">Workflow</a>
+        <a href="#usage">Usage</a>
+        <a href="#structure">Structure</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Rust CLI for ANSYS automation</p>
+          <h1>OpenAnsys Agent</h1>
+          <p class="lede">
+            A local agent workflow that reads engineering input materials, generates ANSYS APDL,
+            repairs failed runs, and prepares LS-DYNA keyword export through a two-stage pipeline.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="#usage">Run locally</a>
+            <a class="button secondary" href="https://github.com/" id="repo-link">View repository</a>
+          </div>
+        </div>
+        <div class="terminal" aria-label="OpenAnsys command preview">
+          <div class="terminal-head">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <pre><code>cargo run -- --auto
+
+openansys-agent
+workspace: ./open
+input dir: ./input
+output dir: ./output
+
+you&gt; /run</code></pre>
+        </div>
+      </section>
+
+      <section class="band metrics" aria-label="Project highlights">
+        <div>
+          <strong>2</strong>
+          <span>ANSYS stages</span>
+        </div>
+        <div>
+          <strong>APDL</strong>
+          <span>generation and repair</span>
+        </div>
+        <div>
+          <strong>.k</strong>
+          <span>LS-DYNA export target</span>
+        </div>
+      </section>
+
+      <section id="workflow" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Pipeline</p>
+          <h2>Built for iterative engineering runs</h2>
+        </div>
+        <div class="steps">
+          <article>
+            <span>01</span>
+            <h3>Collect inputs</h3>
+            <p>Scans the local input directory and builds a structured source summary.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Generate APDL</h3>
+            <p>Creates Stage 1 ANSYS command streams for geometry, material setup, and meshing.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Repair failures</h3>
+            <p>Uses run output and ANSYS error files to drive a focused APDL repair loop.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Export K files</h3>
+            <p>Runs Stage 2 workspaces for LS-DYNA-oriented export and validates keyword output.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="usage" class="section split">
+        <div>
+          <p class="eyebrow">Local usage</p>
+          <h2>Run the CLI from the repository</h2>
+          <p>
+            Configure your API key and ANSYS executable path, place source materials under
+            <code>input/</code>, then start the interactive agent.
+          </p>
+        </div>
+        <div class="code-panel">
+          <pre><code>cargo install --path .
+openansys-agent --auto
+
+# Inside the session
+/run
+/run-stage2</code></pre>
+        </div>
+      </section>
+
+      <section id="structure" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Repository</p>
+          <h2>Important directories</h2>
+        </div>
+        <div class="directory-grid">
+          <article>
+            <h3>src/</h3>
+            <p>Rust source for the CLI, LLM loop, ANSYS orchestration, history, and tools.</p>
+          </article>
+          <article>
+            <h3>input/</h3>
+            <p>Local engineering materials read by the OpenAnsys workflow.</p>
+          </article>
+          <article>
+            <h3>output/</h3>
+            <p>Generated APDL attempts, Stage 2 workspaces, logs, and K-file outputs.</p>
+          </article>
+          <article>
+            <h3>docs/</h3>
+            <p>This GitHub Pages site, deployed as a static artifact by GitHub Actions.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>OpenAnsys Agent</span>
+      <span>Learning-oriented automation for local ANSYS workflows.</span>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
